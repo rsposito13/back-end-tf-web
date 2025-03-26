@@ -54,13 +54,6 @@ async function insertAdmin(data) {
     client.release();
 }
 
-async function deleteAdmin(email) {
-    const client = await connect();
-    const query = "DELETE FROM Admin WHERE email = $1";
-    await client.query(query, [email]);
-    client.release();
-}
-
 async function insertUser(data) {
   const client = await connect();
   const query = "INSERT INTO Usuarios(email, senha, nome) VALUES ($1, $2, $3)";
@@ -78,7 +71,7 @@ async function autenticarUser(email, senha) {
 }
 
 export {
-  autenticarAdmin, insertAdmin, deleteAdmin,
+  autenticarAdmin, insertAdmin,
   insertShows, deleteShows, updateShows, selectShows,
   insertUser, autenticarUser
 };
