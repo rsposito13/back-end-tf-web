@@ -1,5 +1,4 @@
 import pkg from "pg";
-import { allowedNodeEnvironmentFlags } from "process";
 const { Pool } = pkg;
 
 async function connect() {
@@ -62,7 +61,24 @@ async function deleteAdmin(email) {
     client.release();
 }
 
+async function insertUser(data) {
+  const client = await connect();
+  const query = "INSERT INTO Usuarios(email, senha, nome) VALUES ($1, $2, $3)";
+  const user = [data.email, data.senha, data.nome];
+  await client.query(query, user);
+  client.release();
+}
+
+async function autenticarUser(email, senha) {
+  const client = await connect();
+  const query = "SELECT * FROM Usuarios WHERE email = $1 AND senha = $2";
+  const user = [email, senha];
+  const res = await client.query(query, user);
+  return res.rows[0];
+}
+
 export {
   autenticarAdmin, insertAdmin, deleteAdmin,
-  insertShows, deleteShows, updateShows, selectShows
+  insertShows, deleteShows, updateShows, selectShows,
+  insertUser, autenticarUser
 };

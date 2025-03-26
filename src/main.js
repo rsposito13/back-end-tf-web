@@ -3,6 +3,7 @@ import express from "express";
 import routerAdmin from "./routes/admin.js";
 import routerLogin from "./routes/login.js";
 import routerShows from "./routes/shows.js";
+import routerUsers from "./routes/users.js";
 import cors from "cors";
 
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routerLogin);
 app.use(routerAdmin);
 app.use(routerShows);
+app.use(routerUsers);
 
 app.get("/", (req, res) => {
   console.log("Rota / solicitada");
