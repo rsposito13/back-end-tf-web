@@ -26,8 +26,8 @@ async function selectShows() {
 async function insertShows(data) {
   const client = await connect();
   const query = "INSERT INTO Shows (codigo, pessoas, artista, valor_disp, valor_final, responsavel, endereco, data_hora) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
-  const curso = [data.codigo, data.pessoas, data.artista, data.valor_disp, data.valor_final, data.responsavel, data.endereco, data.data_hora];
-  await client.query(query, curso);
+  const show = [data.codigo, data.pessoas, data.artista, data.valor_disp, data.valor_final, data.responsavel, data.endereco, data.data_hora];
+  await client.query(query, show);
   client.release();
 }
 
@@ -40,17 +40,17 @@ async function deleteShows(codigo) {
 
 async function updateShows(codigo, data) {
   const client = await connect();
-  const query = "UPDATE Cursos SET pessoas = $1, valor_disp = $2, valor_final = $3, artista = $4, responsavel = $5, endereco = $6, data_hora = $7 WHERE id = $8";
-  const curso = [data.pessoas, data.valor_disp, data.valor_final, data.artista, data.responsavel, data.endereco, data.data_hora, codigo];
-  await client.query(query, curso);
+  const query = "UPDATE Shows SET pessoas = $1, valor_disp = $2, valor_final = $3, artista = $4, responsavel = $5, endereco = $6, data_hora = $7 WHERE id = $8";
+  const show = [data.pessoas, data.valor_disp, data.valor_final, data.artista, data.responsavel, data.endereco, data.data_hora, codigo];
+  await client.query(query, show);
   client.release();
 }
 
 async function insertAdmin(data) {
     const client = await connect();
     const query = "INSERT INTO Admin(email, senha, nome) VALUES ($1, $2, $3)";
-    const curso = [data.email, data.senha, data.nome];
-    await client.query(query, curso);
+    const admin = [data.email, data.senha, data.nome];
+    await client.query(query, admin);
     client.release();
 }
 
