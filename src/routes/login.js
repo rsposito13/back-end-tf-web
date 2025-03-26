@@ -17,7 +17,7 @@ router.post("/login", async (req, res) => {
           role: 'admin' // Adiciona role no payload do token
         }, 
         process.env.SECRET,
-        { expiresIn: 300 }
+        { expiresIn: '2h' }
       );
       return res.status(202).json({ 
         token: token,
