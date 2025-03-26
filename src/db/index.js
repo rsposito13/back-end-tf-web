@@ -40,7 +40,7 @@ async function deleteShows(codigo) {
 
 async function updateShows(codigo, data) {
   const client = await connect();
-  const query = "UPDATE Shows SET pessoas = $1, valor_disp = $2, valor_final = $3, artista = $4, responsavel = $5, endereco = $6, data_hora = $7 WHERE id = $8";
+  const query = "UPDATE Shows SET pessoas = $1, valor_disp = $2, valor_final = $3, artista = $4, responsavel = $5, endereco = $6, data_hora = $7 WHERE codigo = $8";
   const show = [data.pessoas, data.valor_disp, data.valor_final, data.artista, data.responsavel, data.endereco, data.data_hora, codigo];
   await client.query(query, show);
   client.release();
